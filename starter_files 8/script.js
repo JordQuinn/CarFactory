@@ -20,9 +20,9 @@ class Factory{
   constructor(options){
   this.make = 'Mazda'
   this.location = "USA"
-  this.airbags = options.airbags || true
-  this.abs = options.abs || true
-  this.warranty = options.warranty || "60,000 miles / 3 years"
+  this.airbags = true
+  this.abs = true
+  this.warranty = "60,000 miles / 3 years"
 
       }
    massBuild(quantity, options){
@@ -70,8 +70,15 @@ class Car extends Factory{
 // Write your code below:
 
 class Sport extends Car{
-  constructor(model, trim, transmission, top, color, seatstrim, audio, wheelstrim){
+  constructor(options){
     super(options)
+    this.model =options.model
+    this.trim = options.trim
+    this.top = options.top
+    this.color = options.color
+    this.seatstrim = options.seatstrim
+    this.audio = options.audio
+    this.wheelstrim = options.wheels.trim
     this.moonroof = options.moonroof || false
     this.enginetype = options.enginetype  || "gasoline"
     this.convertible = options.convertible || true
@@ -90,10 +97,17 @@ class Sport extends Car{
 // Write your code below:
 
 class Truck extends Factory{
-  constructor(model, color, enginesize, hitch, bed, navigation){
-    super(warranty)
-    this.backupcamera = options.backupcamera || true
-    this.audio =  options.audio || "basic"
+  constructor(options){
+    super(options)
+    this.model = options.model
+    this.trim = options.trim
+    this.color = options.color
+    this.engensize = options.engensize || 8
+    this.hitch = options.hitch
+    this.bed = options.bed
+    this.navigation = options.navigation
+    this.backupcamera = true
+    this.audio = "basic"
     this.warranty = "150,000 miles / 6 years"
   }
 
@@ -172,35 +186,30 @@ miataRF.customerBuild("black", ['hid headlights, sports suspension, leather stee
 
 // Write your 'trailBlazer' instance below:
 // Write your code below:
-//something is fucked up but im too tired to figure it out
-class TrailBlazer extends Truck{
-  constructor(){
-  this.model = "Trail Blazer"
-  this.color = "blue"
-  this.trim + "Sport"
-  this.enginesize + 8
-  this.hitch = true
-  this.bed = "standard"
-  this.navigation = true
-  this. doors = 2;
-}
-}
+
+let trailBlazer = new Truck({ model: 'Trail Blazer', color: 'blue', trim: 'Sport', enginesize: '8', hitch: 'true', bed: 'standard', navigation: 'true', doors: '2'
+
+})
+console.log(trailBlazer)
+
+
 
 
 // Print trailBlazer. It should have all the above properties. Plus, the extended warranty.
 // Write your code below:
 
 
-console.log(TrailBlazer)
+
 
 // Print trailBlazer, calling massBuid(). It should build 35000 trucks.
 // It should print: "Building 35000 blue Sport Trail Blazer's."
 // Wrint your code below:
 
-
+trailBlazer.massBuild(35000, trailBlazer)
 
 
 
 // Print trailBlazer, calling customerBuild(). It should build a red Trail Blazer with the following options, as an array: seat warmers, tinted windows, fog lamps.
 // It should print: "Building one red Sport Trail Blazer with the following options: seat warmers, tinted windows, fog lamps"
 // Write your code below:
+trailBlazer.customerBuild("red", ['seat warmers', 'tinted windows', 'fog lamps'])
